@@ -1,4 +1,4 @@
-# Aero Wizard 对话框
+# Aero Wizard Sample
 
 小时候就蛮喜欢这种Aero风格的对话框，很精致，用AI做了一个出来。
 
@@ -8,6 +8,14 @@
 
 其实就是系统的Areo向导对话框，适合用来做一些安装包或者向导之类的，调用系统API实现。
 
+### C++ 实现
+
+* 代码：[cpp/](cpp/) (CMake项目)
+* 文档：[docs/aero_wizard_develop_guide_cpp.md](docs/aero_wizard_develop_guide_cpp.md)
+
+### C# 实现 （使用PInvoke）
+
+* 代码：[csharp/](csharp/) (.Net Framework 4.8项目)
 * 文档：[docs/aero_wizard_develop_guide.md](docs/aero_wizard_develop_guide.md)
 
 ## 屏幕截图
