@@ -9,6 +9,7 @@
 - 不要自己画返回箭头，也不要用 WinForms `Button` 或自绘控件代替标题栏里的 Back。
 - 不要调用 `DwmExtendFrameIntoClientArea`。Aero Wizard 已经把标题栏延伸进客户区，再扩一次会盖住系统返回按钮。
 - 不要去掉 `app.manifest` 里的 `Microsoft.Windows.Common-Controls` 6.0 依赖，也不要去掉 `Program.Main` 上的 `[STAThread]`。没有 comctl32 v6 或 STA，Aero Wizard 不会出现。
+- 不要去掉清单里的 `dpiAwareness` `PerMonitorV2`，也不要去掉 `App.config` 里的同名设置。进程需要按每个显示器的 DPI 创建向导，而不是由系统把整窗放大。
 - 不要改 `PropSheetHeader` / `PropSheetPage` 的字段顺序、类型或 `Pack`。`EnsureNativeLayout` 要求布局与 `prsht.h` 一致：64 位 header 96、page 104；32 位 header 52、page 56。
 
 ## 入口和文件
@@ -19,7 +20,8 @@
 | --- | --- |
 | `AeroWizard.cs` | PInvoke、内存对话框模板、两页对话框过程 |
 | `Program.cs` | STA 入口 |
-| `app.manifest` | 启用 comctl32 6.0，并声明 Windows 10 / 11 |
+| `app.manifest` | 启用 comctl32 6.0，声明 Windows 10 / 11，并把进程设为 PerMonitorV2 |
+| `App.config` | WinForms 的 `DpiAwareness` 同样是 `PerMonitorV2` |
 | `WindowsExtendsClientPInvoke.csproj` | `ApplicationManifest` 指向 `app.manifest` |
 
 ## 窗口怎么创建
